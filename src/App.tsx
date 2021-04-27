@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Recipe } from './components/Recipe'
-import { RecipeList } from './components/Recipe/Recipes.styles'
+import { BrowserRouter, Redirect, Route } from 'react-router-dom'
 import type { Recipe as RecipeType } from './types/app'
+import { RecipeList } from './components/Recipe'
 
 const AppWrapper = styled.div`
   max-width: 1024px;
@@ -21,13 +21,14 @@ function App({ data }: Props) {
   const [recipes] = React.useState<RecipeType[]>(data.contents)
 
   return (
-    <AppWrapper>
-      <RecipeList>
-        {recipes.map(recipe => (
-          <Recipe key={recipe.contentId} recipe={recipe} />
-        ))}
-      </RecipeList>
-    </AppWrapper>
+    <BrowserRouter>
+      <AppWrapper>
+        <Redirect to="/recipes" />
+        <Route path="/recipes">
+          <RecipeList recipes={recipes} />
+        </Route>
+      </AppWrapper>
+    </BrowserRouter>
   )
 }
 
