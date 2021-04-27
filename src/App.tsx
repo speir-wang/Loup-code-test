@@ -1,8 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Redirect, Route } from 'react-router-dom'
-import type { Recipe as RecipeType } from './types/app'
 import { RecipeList } from './components/Recipe'
+import { useDispatch } from 'react-redux'
+import { loadRecipes } from './redux/actions'
 
 const AppWrapper = styled.div`
   max-width: 1024px;
@@ -11,21 +12,20 @@ const AppWrapper = styled.div`
   background-color: #f4f4f4;
 `
 
-interface Props {
-  data: {
-    contents: RecipeType[]
-  }
-}
+function App() {
+  const dispatch = useDispatch()
 
-function App({ data }: Props) {
-  const [recipes] = React.useState<RecipeType[]>(data.contents)
+  React.useEffect(() => {
+    dispatch(loadRecipes())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <BrowserRouter>
       <AppWrapper>
         <Redirect to="/recipes" />
         <Route path="/recipes">
-          <RecipeList recipes={recipes} />
+          <RecipeList />
         </Route>
       </AppWrapper>
     </BrowserRouter>
