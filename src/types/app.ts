@@ -6,6 +6,7 @@ export interface Recipe {
   imageList: ImageList
   tags: Tag[]
   contentType?: number
+  authors: string[]
 }
 
 export type ImageList = {
