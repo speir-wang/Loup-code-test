@@ -1,4 +1,7 @@
-import { combineReducers } from 'redux'
-import recipes from './recipes'
+import { combineReducers } from '@reduxjs/toolkit'
+import { recipesReducer } from './recipes'
 
-export default combineReducers({ recipes })
+const rootReducer = combineReducers({ recipes: recipesReducer })
+export type RootState = ReturnType<typeof rootReducer>
+
+export default rootReducer

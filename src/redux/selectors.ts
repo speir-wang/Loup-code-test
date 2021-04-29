@@ -1,3 +1,3 @@
-import type { AppState } from './reducers/recipes'
+import { RootState } from './store'
 
-export const getRecipes = (store: AppState) => store.recipes
+export const getRecipes = (store: RootState) => store.recipes

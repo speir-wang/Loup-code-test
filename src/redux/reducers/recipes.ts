@@ -3,24 +3,15 @@ import { LOAD_RECIPES } from '../actionTypes'
 import data from '../../mock/recipes.json'
 import type { Recipe } from '../../types/app'
 
-export interface AppState {
-  recipes?: Recipe[]
-}
+export type RecipesState = Recipe[]
 
-const initialState: AppState = {
-  recipes: []
-}
+const initialState: RecipesState = []
 
-export default function reducer(
-  state = initialState,
-  action: Actions
-): AppState {
+export function recipesReducer(state = initialState, action: Actions) {
   switch (action.type) {
     case LOAD_RECIPES: {
-      return {
-        ...state,
-        recipes: data.contents
-      }
+      const recipes = data.contents
+      return recipes
     }
     default:
       return state
