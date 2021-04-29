@@ -17,8 +17,7 @@ function App() {
 
   React.useEffect(() => {
     dispatch(loadRecipes())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch])
 
   return (
     <BrowserRouter>

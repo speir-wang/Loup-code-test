@@ -1,9 +1,12 @@
 import * as React from 'react'
+import { useSelector } from 'react-redux'
 import { Recipe } from './Recipe'
 import * as Styles from './Recipes.styles'
-import type { Recipe as RecipeType } from '../../types/app'
+import { getRecipes } from '../../redux/selectors'
 
-export const RecipeList = ({ recipes }: { recipes: RecipeType[] }) => {
+export const RecipeList = () => {
+  const recipes = useSelector(getRecipes)
+
   return (
     <Styles.RecipeList>
       {recipes.map(recipe => (
